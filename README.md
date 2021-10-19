@@ -44,10 +44,10 @@ Arquivo **pom.xml**
 		<version>2.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.mydomain.project</groupId>
-	<artifactId>vaccine</artifactId>
+	<groupId>com.project</groupId>
+	<artifactId>npa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>vaccine</name>
+	<name>npa</name>
 	<description>My Project</description>
 	<packaging>jar</packaging>
 	<properties>
