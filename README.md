@@ -1,52 +1,7 @@
-# vaccine
-NExT - Hackathon
+# npa
+NExT - 
 
 ===========================================================================
-
-## Introdução a Orientação a Objeto
-
-Onde posso aplicar?
-
-O fato de você utilizar na sua aplicação a orientação a objeto não quer dizer que não é não é uma aplicação estruturada.
-
-Simula 67 - primeira linguagem orientada a objetos 
-
-Como identificar uma função utilitária?
-
-Deve ser feita a seguintes perguntas:
-
-Ela consegue se resolver por ela mesma, sem depdendências externas?
-
-Os parãmetros de entrada são simples e diretos?
-
-o resultado de saída também é simples e direto?
-
-Exemplo:
-Validação de CPF ou CNPJ (Entrada: o cpf | Saída: Verdadeiro ou Falso).
-
-
-Os conceitos são muito importantes!
-
-**Classe e Objeto** -
-
-Diferença entre Classes e Objetos: Antes de um objeto ser criado, devemos definir quais serão suas propriedades e métodos, tais definições são realizadas através de uma classe.
-A partir de uma classe, podemos construir objetos na memória do computador que executa a nossa aplicação. Usando uma analogia, uma classe funciona como uma "receita" para criar objetos. Inclusive, vários objetos podem ser criados a partir de uma única classe.
-
-
-São estruturas de dados atraves dos quais objetos podem ser instanciados
-
-**Associação de Classes** - Quando utilizamos uma classe dentro de outra classe.
-
-**Herança** - É a utilização de uma classe base, fazendo com que uma nova classe tenha todos os atributos e funções da classe pai, mais as suas próprias.
-
-**Encapsulamento** - É a possibilidade de proteger alguns dados ou funcionalidades da classe, não permitindo que seus consumidores possam acessá-la.
-
-**Polimorfismo** - Capacidade de referenciar objetos construídos por classes específicas como objetos de uma classe genérica, desde que essa classe genérica respeite a hierarquia em questão. Aqui podemos criar funções que terão o mesmo nome, mas que podem ter diferentes processamentos, implementações ou mesma classe o mesmo nome e diferentes entradas.
-
-**Abstração** - é a habilidade de concentrar-se nos aspectos essenciais de um domínio, ignorando características menos importantes ou acidentais. Nesse contexto, objetos são abstrações de entidades existentes no domíno em questão.
-Com isso, pode-se concluir que a abstração é a maneira de interpretar um contexto de negócio quando desejamos transcrevê-lo como uma aplicação OO.
-
-
 
 ## Spring Boot
 
