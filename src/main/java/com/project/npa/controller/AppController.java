@@ -1,4 +1,4 @@
-package com.project.npa;
+package com.project.npa.controller;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +20,7 @@ public class AppController {
     public String getAppMessage() {
         return appMessage;
     }
+
     @GetMapping("/caminhojava")
     public String getVariavelAmbiente() {
         return "O caminho da variável de ambiente é:   " + variavelAmbiente;

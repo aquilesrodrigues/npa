@@ -5,11 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class npaApplication {
+public class NpaApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(npaApplication.class, args);
+		SpringApplication.run(NpaApplication.class, args);
 	}
 
 }
