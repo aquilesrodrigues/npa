@@ -61,5 +61,16 @@ public class DepartamentoController {
 
         return ResponseEntity.ok().build();
     }
+    @PutMapping(URLBASEID)
+    public ResponseEntity<DepartamentoDTO> editar(@PathVariable Long id, @RequestBody DepartamentoDTO departamentoDTO){
+
+        Departamento edicaoDepartamento = departamentoRepository.findById(id).orElseThrow(() -> new DepartamentoException(id));
+        edicaoDepartamento = departamentoDTO.toDepartamento();
+        edicaoDepartamento.setId(id);
+        edicaoDepartamento = departamentoRepository.save(edicaoDepartamento);
+
+        return new ResponseEntity<>(new DepartamentoDTO(edicaoDepartamento), HttpStatus.OK);
+    }
+
 
 }

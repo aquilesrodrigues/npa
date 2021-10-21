@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Departamento")
+@Table(name="cargo")
 @Getter
 @Setter
 public class Cargo {
@@ -17,7 +17,6 @@ public class Cargo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
-    @Lob
     @NotNull
     private String nome;
 
