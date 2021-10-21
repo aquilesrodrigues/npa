@@ -36,7 +36,7 @@ public class DepartamentoDTO {
         DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         this.date = departamentoCadastro.getDate().format(formater);
     }
-    public Departamento getDepartamento() {
+    public Departamento toDepartamento() {
         var departamento = new Departamento();
         departamento.setNome(this.nome);
         departamento.setDescricao(this.descricao);
