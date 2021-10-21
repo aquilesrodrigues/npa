@@ -1,16 +1,14 @@
 package com.project.npa.controller;
 
 
+import com.project.npa.exception.DepartamentoException;
 import com.project.npa.model.Departamento;
 import com.project.npa.model.dto.DepartamentoDTO;
 import com.project.npa.repository.DepartamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +17,12 @@ import java.util.List;
 public class DepartamentoController {
 
     private final String URLBASE = "/departamentos";
+    private final String URLBASEID = URLBASE+"/{id}";
 
     @Autowired
     private DepartamentoRepository departamentoRepository;
 
+    //respostas formata respostas de api
     @PostMapping(URLBASE)
     public ResponseEntity<DepartamentoDTO> cadastrar(@RequestBody DepartamentoDTO departamento){
 
@@ -37,15 +37,29 @@ public class DepartamentoController {
 
         List<Departamento> departamentoLista = departamentoRepository.findAll();
         List<DepartamentoDTO> listagemDepartamentos = new ArrayList<>();
-//        departamentoLista.stream().map(item -> listagemDepartamentos.add(new DepartamentoDTO(item)));
+
         for (Departamento item :
                 departamentoLista) {
             listagemDepartamentos.add(new DepartamentoDTO(item));
         }
-        for (DepartamentoDTO item :
-                listagemDepartamentos) {
-            System.out.println(item.getNome());;
-        }
+
         return new ResponseEntity<>(listagemDepartamentos, HttpStatus.OK);
     }
+    @GetMapping(URLBASEID)
+    public ResponseEntity<DepartamentoDTO> retornarDepartamento(@PathVariable  Long id){
+
+        Departamento departamento = departamentoRepository.findById(id).orElseThrow(() -> new DepartamentoException(id));
+
+        return new ResponseEntity<>(new DepartamentoDTO(departamento), HttpStatus.OK);
+    }
+
+    @DeleteMapping(URLBASEID)
+    public ResponseEntity<?> deletarDepartamento(@PathVariable Long id){
+
+        Departamento departamento = departamentoRepository.findById(id).orElseThrow(() -> new DepartamentoException(id));
+        departamentoRepository.deleteById(id);
+
+        return ResponseEntity.ok().build();
+    }
+
 }
