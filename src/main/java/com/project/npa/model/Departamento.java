@@ -2,16 +2,14 @@ package com.project.npa.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name="Departamento")
-@Getter
-@Setter
+@Data
 public class Departamento {
 
     @Id
