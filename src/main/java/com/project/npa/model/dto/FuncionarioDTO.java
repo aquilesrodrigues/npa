@@ -3,12 +3,15 @@ package com.project.npa.model.dto;
 import com.project.npa.model.Departamento;
 import com.project.npa.model.Funcionario;
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class FuncionarioDTO {
 
     private Long id;
@@ -21,6 +24,7 @@ public class FuncionarioDTO {
     private DepartamentoDTO departamento;
 
     public FuncionarioDTO(Funcionario funcionario) {
+        this.id = funcionario.getId();
         this.cpf = funcionario.getCpf();
         this.departamento = new DepartamentoDTO(funcionario.getDepartamento());
         this.email = funcionario.getEmail();
@@ -28,7 +32,6 @@ public class FuncionarioDTO {
         this.ultimoNome = funcionario.getUltimoNome();
         this.status = funcionario.getStatus();
         this.telefone = funcionario.getTelefone();
-
 
     }
 

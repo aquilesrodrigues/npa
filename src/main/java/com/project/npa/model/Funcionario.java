@@ -3,12 +3,15 @@ package com.project.npa.model;
 
 import com.sun.istack.NotNull;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="funcionario")
-@Data
+@Getter
+@Setter
 public class Funcionario {
 
     @Id
@@ -31,8 +34,7 @@ public class Funcionario {
 
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "departamento_id", nullable = false)
+    @OneToOne
     private Departamento departamento;
 
 

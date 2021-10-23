@@ -14,12 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+//@RequestMapping(value = "/api")
 public class DepartamentoController {
 
     private final String URLBASE = "/departamentos";
     private final String URLBASEID = URLBASE+"/{id}";
 
-    @Autowired
+    @Autowired // faz injeção de dependência (será criada uma nova instância desta interface)
     private DepartamentoRepository departamentoRepository;
 
     //respostas formata respostas de api
@@ -46,7 +47,7 @@ public class DepartamentoController {
         return new ResponseEntity<>(listagemDepartamentos, HttpStatus.OK);
     }
     @GetMapping(URLBASEID)
-    public ResponseEntity<DepartamentoDTO> retornarDepartamento(@PathVariable  Long id){
+    public ResponseEntity<DepartamentoDTO> retornarDepartamento(@PathVariable("id")  Long id){
 
         Departamento departamento = departamentoRepository.findById(id).orElseThrow(() -> new DepartamentoException(id));
 
