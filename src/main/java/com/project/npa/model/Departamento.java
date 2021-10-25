@@ -3,34 +3,37 @@ package com.project.npa.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.w3c.dom.stylesheets.LinkStyle;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name="departamento")
-@Getter
-@Setter
+@Data
 public class Departamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, length = 50)
+
+    @Column(nullable = false, length = 150)
     private String nome;
 
-    @Lob
+    @Column(length = 150)
     private String descricao;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "dd-MMM-yyyy")
     private LocalDate date;
 
-    @OneToMany(mappedBy = "departamento")
-    private List<Funcionario> funcionarioLista;
+
+    @OneToMany(mappedBy = "departamento", fetch = FetchType.EAGER)
+    @OrderBy("nome asc")
+    //@JoinColumn(name="idDepartamento")
+    private List<Funcionario> funcionario;
 
 }

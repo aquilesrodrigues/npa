@@ -15,9 +15,11 @@ public class Cargo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
-    @NotNull
+    @Column(nullable = false, length = 150)
     private String nome;
+
+    @OneToOne(mappedBy="funcionario")
 
 }

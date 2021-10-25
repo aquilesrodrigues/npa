@@ -1,10 +1,7 @@
 package com.project.npa.controller;
 
-import com.project.npa.exception.DepartamentoException;
 import com.project.npa.exception.FuncionarioException;
-import com.project.npa.model.Departamento;
 import com.project.npa.model.Funcionario;
-import com.project.npa.model.dto.DepartamentoDTO;
 import com.project.npa.model.dto.FuncionarioDTO;
 import com.project.npa.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-
 public class FuncionarioController {
 
     private final String URLBASE = "/funcionarios";

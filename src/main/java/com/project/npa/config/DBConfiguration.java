@@ -20,10 +20,10 @@ public class DBConfiguration {
     @Profile("dev")
     @Bean
     public String developmentDatabaseConnection() {
-        System.out.println("DB connection for DEV - PostgreSQL");
+        System.out.println("Perfil conexao para DEV - PostgreSQL");
         System.out.println(driverClassName);
         System.out.println(url);
-        return "Return Connection to PostgreSQL_DEV - heroku nuvem";
+        return "Conexao do PostgreSQL_DEV - heroku nuvem";
     }
     @Profile("prod")
 
@@ -31,6 +31,6 @@ public class DBConfiguration {
         System.out.println("DB connection for PROD - PostgreSQL");
         System.out.println(driverClassName);
         System.out.println(url);
-        return "Return Connection to PostgreSQL_PROD - heroku nuvem";
+        return "Conexao do PostgreSQL_PROD - heroku nuvem";
     }
 }

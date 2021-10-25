@@ -1,10 +1,12 @@
 package com.project.npa.model;
 
 
+
 import com.sun.istack.NotNull;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 
@@ -18,24 +20,31 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @Column(nullable = false, length = 14)
     private String cpf;
 
-    @NotNull
+    @Column(nullable = false, length = 50)
     private String primeiroNome;
 
-    @NotNull
+    @Column(nullable = false, length = 50)
     private String ultimoNome;
 
-    @NotNull
     private Boolean status;
 
+    @Column(length = 15)
     private String telefone;
 
+    @Column(nullable = false)
     private String email;
 
-    @OneToOne
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "departamentoId", referencedColumnName = "id")
     private Departamento departamento;
+
+    @OneToOne
+    @JoinColumn(name = "cargoId", referencedColumnName = "id")
+    private Cargo cargo;
 
 
 }

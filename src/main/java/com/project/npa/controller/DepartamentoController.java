@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-//@RequestMapping(value = "/api")
 public class DepartamentoController {
 
     private final String URLBASE = "/departamentos";
