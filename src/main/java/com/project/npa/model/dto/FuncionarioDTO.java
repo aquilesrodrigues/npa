@@ -22,6 +22,7 @@ public class FuncionarioDTO {
     private String telefone;
     private String email;
     private DepartamentoDTO departamento;
+    private CargoDTO cargo;
 
     public FuncionarioDTO(Funcionario funcionario) {
         this.id = funcionario.getId();
@@ -32,11 +33,13 @@ public class FuncionarioDTO {
         this.ultimoNome = funcionario.getUltimoNome();
         this.status = funcionario.getStatus();
         this.telefone = funcionario.getTelefone();
+        this.cargo = new CargoDTO(funcionario.getCargo());
 
     }
 
     public Funcionario toFuncionario() {
         var funcionario = new Funcionario();
+        funcionario.setId(this.id);
         funcionario.setCpf(this.cpf);
         funcionario.setPrimeiroNome(this.primeiroNome);
         funcionario.setUltimoNome(this.ultimoNome);
@@ -44,6 +47,7 @@ public class FuncionarioDTO {
         funcionario.setTelefone(this.telefone);
         funcionario.setEmail(this.email);
         funcionario.setDepartamento(this.departamento.toDepartamento());
+        funcionario.setCargo(this.cargo.toCargo());
         return funcionario;
 
 

@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="cargo")
@@ -20,6 +23,12 @@ public class Cargo {
     @Column(nullable = false, length = 150)
     private String nome;
 
-    @OneToOne(mappedBy="funcionario")
+    @OneToMany(mappedBy="cargo")
+
+    private List<Funcionario> funcionarios;
+
+    public void addFuncionario(Funcionario funcionario) {
+        funcionarios.add(funcionario);
+    }
 
 }

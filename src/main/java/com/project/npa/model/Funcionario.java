@@ -5,9 +5,8 @@ package com.project.npa.model;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.LazyToOne;
-import org.hibernate.engine.internal.Cascade;
-
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType.*;
 import javax.persistence.*;
 
 @Entity
@@ -29,6 +28,7 @@ public class Funcionario {
     @Column(nullable = false, length = 50)
     private String ultimoNome;
 
+    @Column(nullable = false)
     private Boolean status;
 
     @Column(length = 15)
@@ -38,13 +38,15 @@ public class Funcionario {
     private String email;
 
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "departamentoId", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "departamentoId", nullable = false, foreignKey = @ForeignKey(name = "funcionario_departamento_fk"), unique = false)
     private Departamento departamento;
 
-    @OneToOne
-    @JoinColumn(name = "cargoId", referencedColumnName = "id")
+    @ManyToOne
+    //@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinColumn(name = "cargoId", nullable = false, foreignKey = @ForeignKey(name = "funcionario_cargo_fk"), unique = false)
     private Cargo cargo;
+
 
 
 }

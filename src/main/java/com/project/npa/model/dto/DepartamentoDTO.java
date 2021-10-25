@@ -39,6 +39,7 @@ public class DepartamentoDTO {
     }
     public Departamento toDepartamento() {
         var departamento = new Departamento();
+        departamento.setId(this.id);
         departamento.setNome(this.nome);
         departamento.setDescricao(this.descricao);
         DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd-MM-yyyy");

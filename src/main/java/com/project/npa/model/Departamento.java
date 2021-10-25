@@ -31,9 +31,9 @@ public class Departamento {
     private LocalDate date;
 
 
-    @OneToMany(mappedBy = "departamento", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "departamento")
     @OrderBy("nome asc")
-    //@JoinColumn(name="idDepartamento")
+
     private List<Funcionario> funcionario;
 
 }
