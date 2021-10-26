@@ -2,11 +2,11 @@ package com.project.npa.model;
 
 
 
-import com.sun.istack.NotNull;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType.*;
+
 import javax.persistence.*;
 
 @Entity
@@ -36,7 +36,6 @@ public class Funcionario {
 
     @Column(nullable = false)
     private String email;
-
 
     @ManyToOne
     @JoinColumn(name = "departamentoId", nullable = false, foreignKey = @ForeignKey(name = "funcionario_departamento_fk"), unique = false)

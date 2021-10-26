@@ -33,7 +33,5 @@ public class Departamento {
 
     @OneToMany(mappedBy = "departamento")
     @OrderBy("nome asc")
-
     private List<Funcionario> funcionario;
-
 }
