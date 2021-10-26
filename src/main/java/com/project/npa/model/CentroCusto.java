@@ -1,29 +1,24 @@
 package com.project.npa.model;
 
-
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name="cargo")
+@Table(name="centroCusto")
 @Getter
 @Setter
-public class Cargo {
+public class CentroCusto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false, length = 50)
     private String nome;
 
-    @OneToMany(mappedBy="cargo")
-    private List<Funcionario> funcionarios;
-
+    @OneToMany(mappedBy = "centroCusto")
+    private List<Projeto> projetos;
 }

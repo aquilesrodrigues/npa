@@ -1,13 +1,10 @@
 package com.project.npa.model.dto;
 
-import com.project.npa.model.Departamento;
+
 import com.project.npa.model.Funcionario;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -46,8 +43,9 @@ public class FuncionarioDTO {
         funcionario.setStatus(this.status);
         funcionario.setTelefone(this.telefone);
         funcionario.setEmail(this.email);
-        funcionario.setDepartamento(this.departamento.toDepartamento());
         funcionario.setCargo(this.cargo.toCargo());
+        funcionario.setDepartamento(this.departamento.toDepartamento());
+
         return funcionario;
 
 

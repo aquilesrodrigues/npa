@@ -1,13 +1,10 @@
 package com.project.npa.model;
 
 
-
-
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="funcionario")
@@ -42,10 +39,12 @@ public class Funcionario {
     private Departamento departamento;
 
     @ManyToOne
-    //@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "cargoId", nullable = false, foreignKey = @ForeignKey(name = "funcionario_cargo_fk"), unique = false)
     private Cargo cargo;
 
 
+    @ManyToMany(mappedBy = "funcionarios")
+    @OrderBy("nome asc")
+    private List<Projeto> projetos;
 
 }

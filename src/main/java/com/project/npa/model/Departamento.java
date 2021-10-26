@@ -26,12 +26,14 @@ public class Departamento {
     @Column(length = 150)
     private String descricao;
 
-    //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
     @DateTimeFormat(pattern = "dd-MMM-yyyy")
     private LocalDate date;
 
 
+
+
     @OneToMany(mappedBy = "departamento")
-    @OrderBy("nome asc")
     private List<Funcionario> funcionario;
+
+
 }
