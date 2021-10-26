@@ -20,7 +20,7 @@ public class CentroCustoDTO {
         this.nome = centroCusto.getNome();
     }
 
-    public CentroCusto toCentroCusto(){
+    public CentroCusto converteParaCentroCusto(){
         var centroCusto = new CentroCusto();
         centroCusto.setId(this.id);
         centroCusto.setNome(this.nome);

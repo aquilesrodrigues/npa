@@ -43,7 +43,7 @@ public class FuncionarioDTO {
         funcionario.setStatus(this.status);
         funcionario.setTelefone(this.telefone);
         funcionario.setEmail(this.email);
-        funcionario.setCargo(this.cargo.toCargo());
+        funcionario.setCargo(this.cargo.converteParaCargo());
         funcionario.setDepartamento(this.departamento.toDepartamento());
 
         return funcionario;

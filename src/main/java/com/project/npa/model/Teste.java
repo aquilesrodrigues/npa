@@ -2,8 +2,7 @@ package com.project.npa.model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name= "cachorro")
+
 public class Teste {
 
     @Id

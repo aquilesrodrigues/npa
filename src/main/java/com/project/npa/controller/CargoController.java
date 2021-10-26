@@ -23,7 +23,7 @@ public class CargoController {
     @PostMapping(URLBASE)
     public ResponseEntity<CargoDTO> cadastrar(@RequestBody CargoDTO cargo) {
 
-        Cargo cargoCadastro = cargo.toCargo();
+        Cargo cargoCadastro = cargo.converteParaCargo();
         cargoCadastro = cargoRepository.save(cargoCadastro);
 
         return new ResponseEntity<>(new CargoDTO(cargoCadastro), HttpStatus.CREATED);
@@ -53,7 +53,7 @@ public class CargoController {
     public ResponseEntity<CargoDTO> editarCargo(@PathVariable Long id, @RequestBody CargoDTO cargoDTO) {
 
         Cargo edicaoCargo = cargoRepository.findById(id).orElseThrow(() -> new CargoException(id));
-        edicaoCargo = cargoDTO.toCargo();
+        edicaoCargo = cargoDTO.converteParaCargo();
         edicaoCargo.setId(id);
         edicaoCargo = cargoRepository.save(edicaoCargo);
 

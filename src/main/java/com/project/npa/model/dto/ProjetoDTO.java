@@ -48,7 +48,7 @@ public class ProjetoDTO {
         projeto.setDateFim(this.dateFim);
         projeto.setStatus(this.status);
         projeto.setFlags(this.flags);
-        projeto.setCentroCusto(this.centroCusto.toCentroCusto());
+        projeto.setCentroCusto(this.centroCusto.converteParaCentroCusto());
         projeto.setFuncionarios(new ArrayList<Funcionario>());
         for (FuncionarioDTO item : this.funcionarios)
         {

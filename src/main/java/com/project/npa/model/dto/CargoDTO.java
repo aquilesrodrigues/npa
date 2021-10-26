@@ -17,7 +17,7 @@ public class CargoDTO {
         this.id = cargoCadastro.getId();
         this.nome = cargoCadastro.getNome();
     }
-    public Cargo toCargo() {
+    public Cargo converteParaCargo() {
         var cargo = new Cargo();
         cargo.setId(this.id);
         cargo.setNome(this.nome);
