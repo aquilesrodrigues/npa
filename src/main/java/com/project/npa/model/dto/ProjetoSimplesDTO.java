@@ -26,12 +26,13 @@ public class ProjetoSimplesDTO {
     private String flags;
     private Long centroCustoId;
     private Collection<Long> funcionariosId;
-    DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
 
     public ProjetoSimplesDTO(Projeto projeto) {
 
         this.id = projeto.getId();
         this.nome = projeto.getNome();
+        DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         this.dateInicio = projeto.getDateInicio().format(formater);
         this.dateFim = projeto.getDateFim().format(formater);
         this.status = projeto.getStatus();
@@ -40,15 +41,14 @@ public class ProjetoSimplesDTO {
         this.funcionariosId = new ArrayList<Long>();
         for (Funcionario item : projeto.getFuncionarios()) {
             this.funcionariosId.add(item.getId());
-
         }
-
     }
 
     public Projeto converteParaProjeto(CentroCusto centroCusto, Collection<Funcionario> funcionarios) {
         var projeto = new Projeto();
         projeto.setId(this.id);
         projeto.setNome(this.nome);
+        DateTimeFormatter formater = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         projeto.setDateInicio(LocalDate.parse(this.dateInicio, formater));
         projeto.setDateFim(LocalDate.parse(this.dateFim, formater));
         projeto.setStatus(this.status);
