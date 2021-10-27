@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @RestController
-//@RequestMapping("/projetos")
 public class ProjetoController {
 
     private final String URLBASE = "/projetos";
@@ -39,7 +38,7 @@ public class ProjetoController {
     private FuncionarioRepository funcionarioRepository;
 
     @PostMapping(URLBASE)
-    private ResponseEntity<ProjetoSimplesDTO> cadastro(@RequestBody ProjetoSimplesDTO projetoSimples) {
+    public ResponseEntity<ProjetoSimplesDTO> cadastro(@RequestBody ProjetoSimplesDTO projetoSimples) {
 
         CentroCusto centroCusto = centroCustoRepository.findById(projetoSimples.getCentroCustoId()).orElseThrow(() -> new CentroCustoException(projetoSimples.getCentroCustoId()));
         Collection<Funcionario> funcionarios = new ArrayList<Funcionario>();
