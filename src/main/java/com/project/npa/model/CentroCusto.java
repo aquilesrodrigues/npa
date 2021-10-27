@@ -8,8 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name="centroCusto")
-@Getter
-@Setter
+
 public class CentroCusto {
 
     @Id
@@ -21,4 +20,25 @@ public class CentroCusto {
 
     @OneToMany(mappedBy = "centroCusto")
     private List<Projeto> projetos;
+
+
+
+    public Long getId() { return id; }
+
+    public String getNome() { return nome; }
+
+    public List<Projeto> getProjetos() { return projetos; }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
+    }
 }
