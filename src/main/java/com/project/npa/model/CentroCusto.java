@@ -18,6 +18,7 @@ public class CentroCusto {
     @Column(nullable = false, length = 50)
     private String nome;
 
+
     @OneToMany(mappedBy = "centroCusto")
     private List<Projeto> projetos;
 

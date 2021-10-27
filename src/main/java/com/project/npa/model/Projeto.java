@@ -10,8 +10,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name="projeto")
-@Getter
-@Setter
+
 public class Projeto {
 
     @Id
@@ -48,4 +47,68 @@ public class Projeto {
     )
     private Collection<Funcionario> funcionarios;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public LocalDate getDateInicio() {
+        return dateInicio;
+    }
+
+    public void setDateInicio(LocalDate dateInicio) {
+        this.dateInicio = dateInicio;
+    }
+
+    public LocalDate getDateFim() {
+        return dateFim;
+    }
+
+    public void setDateFim(LocalDate dateFim) {
+        this.dateFim = dateFim;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public String getFlags() {
+        return flags;
+    }
+
+    public void setFlags(String flags) {
+        this.flags = flags;
+    }
+
+    public CentroCusto getCentroCusto() {
+        return centroCusto;
+    }
+
+    public void setCentroCusto(CentroCusto centroCusto) {
+        this.centroCusto = centroCusto;
+    }
+
+    public Collection<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(Collection<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
+    }
 }

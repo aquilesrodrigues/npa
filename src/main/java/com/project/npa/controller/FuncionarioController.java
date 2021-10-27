@@ -23,9 +23,9 @@ public class FuncionarioController {
 
     //respostas formata respostas de api
     @PostMapping(URLBASE)
-    public ResponseEntity<FuncionarioDTO> cadastrar(@RequestBody FuncionarioDTO funcionarioDTO) {
+    public ResponseEntity<FuncionarioDTO> cadastrar(@RequestBody FuncionarioDTO funcionariosRequest) {
 
-        Funcionario funcionarioCadastro = funcionarioDTO.toFuncionario();
+        Funcionario funcionarioCadastro = funcionariosRequest.toFuncionario();
         funcionarioCadastro = funcionarioRepository.save(funcionarioCadastro);
 
         return new ResponseEntity<>(new FuncionarioDTO(funcionarioCadastro), HttpStatus.CREATED);

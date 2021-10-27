@@ -18,7 +18,7 @@ public class CentroCustoDTO {
     }
 
     public CentroCusto converteParaCentroCusto(){
-        //var ══> Tipo Inferido - Antes da atribuição da variável ele verifica o valor atribuído e declara a variável de acordo com o seu tipo.
+        //var ══> Tipo Inferido
         var centroCusto = new CentroCusto();
         centroCusto.setId(this.id);
         centroCusto.setNome(this.nome);
@@ -32,4 +32,5 @@ public class CentroCustoDTO {
 
     public void setId(Long id) { this.id = id; }
     public void setNome(String nome) { this.nome = nome; }
+
 }
