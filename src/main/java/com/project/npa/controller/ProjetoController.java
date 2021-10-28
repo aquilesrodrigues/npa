@@ -51,6 +51,16 @@ public class ProjetoController {
         return new ResponseEntity<ProjetoSimplesDTO>(new ProjetoSimplesDTO(projetoCadastro), HttpStatus.CREATED);
     }
 
+    @PutMapping(URLBASEID)
+    public ResponseEntity<ProjetoSimplesDTO> editar(@PathVariable Long id, @RequestBody ProjetoSimplesDTO projetoSimplesDto) {
+
+        Projeto edicaoProjeto = projetoRepository.findById(id).orElseThrow(() -> new ProjetoException(id));
+        edicaoProjeto = projetoSimplesDto.converteParaProjeto(edicaoProjeto.getCentroCusto(), edicaoProjeto.getFuncionarios());
+        edicaoProjeto = projetoRepository.save(edicaoProjeto);
+
+        return new ResponseEntity<>(new ProjetoSimplesDTO(edicaoProjeto), HttpStatus.OK);
+    }
+
 
     @DeleteMapping(URLBASEID)
     public ResponseEntity<?> deletarProjeto(@PathVariable Long id) {
