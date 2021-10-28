@@ -36,6 +36,10 @@ public class Projeto {
     @JoinColumn(name = "centroCustoId", nullable = false, foreignKey = @ForeignKey(name = "projeto_centroCusto_fk"), unique = false)
     private CentroCusto centroCusto;
 
+    @ManyToOne
+    @JoinColumn(name = "funcionarioGerenteId", nullable = false, foreignKey = @ForeignKey(name = "projeto_funcionario_fk"), unique = false)
+    private Funcionario funcionarioGerente;
+
     @ManyToMany
     @JoinTable(
             name = "projeto_funcionario",
@@ -111,5 +115,13 @@ public class Projeto {
 
     public void setFuncionarios(Collection<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
+    }
+
+    public Funcionario getFuncionarioGerente() {
+        return funcionarioGerente;
+    }
+
+    public void setFuncionarioGerente(Funcionario funcionarioGerente) {
+        this.funcionarioGerente = funcionarioGerente;
     }
 }

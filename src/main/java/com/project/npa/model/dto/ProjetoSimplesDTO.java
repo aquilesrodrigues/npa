@@ -28,6 +28,7 @@ public class ProjetoSimplesDTO {
     private String flags;
     private Long centroCustoId;
     private Collection<Long> funcionariosId;
+    private Long funcionarioGerenteId;
 
 
     public ProjetoSimplesDTO(Projeto projeto) {
@@ -44,9 +45,10 @@ public class ProjetoSimplesDTO {
         for (Funcionario item : projeto.getFuncionarios()) {
             this.funcionariosId.add(item.getId());
         }
+        this.funcionarioGerenteId = projeto.getFuncionarioGerente().getId();
     }
 
-    public Projeto converteParaProjeto(CentroCusto centroCusto, Collection<Funcionario> funcionarios) {
+    public Projeto converteParaProjeto(CentroCusto centroCusto, Collection<Funcionario> funcionarios, Funcionario funcionarioGerente) {
         var projeto = new Projeto();
         projeto.setId(this.id);
         projeto.setNome(this.nome);
@@ -57,6 +59,7 @@ public class ProjetoSimplesDTO {
         projeto.setFlags(this.flags);
         projeto.setCentroCusto(centroCusto);
         projeto.setFuncionarios(funcionarios);
+        projeto.setFuncionarioGerente(funcionarioGerente);
 
         return projeto;
 

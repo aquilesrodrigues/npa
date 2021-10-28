@@ -5,7 +5,6 @@ import com.project.npa.exception.ProjetoException;
 import com.project.npa.model.CentroCusto;
 import com.project.npa.model.Funcionario;
 import com.project.npa.model.Projeto;
-import com.project.npa.model.dto.CentroCustoDTO;
 import com.project.npa.model.dto.ProjetoSimplesDTO;
 import com.project.npa.repository.CentroCustoRepository;
 import com.project.npa.repository.FuncionarioRepository;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @RestController
 public class ProjetoController {
@@ -45,7 +43,9 @@ public class ProjetoController {
             funcionarios.add(funcionario);
         }
 
-        Projeto projetoCadastro = projetoSimples.converteParaProjeto(centroCusto, funcionarios);
+        Funcionario funcionarioGerente = funcionarioRepository.findById(projetoSimples.getFuncionarioGerenteId()).orElseThrow(() -> new FuncionarioException(projetoSimples.getFuncionarioGerenteId()));
+
+        Projeto projetoCadastro = projetoSimples.converteParaProjeto(centroCusto, funcionarios, funcionarioGerente);
         projetoCadastro = projetoRepository.save(projetoCadastro);
 
         return new ResponseEntity<ProjetoSimplesDTO>(new ProjetoSimplesDTO(projetoCadastro), HttpStatus.CREATED);
@@ -54,8 +54,14 @@ public class ProjetoController {
     @PutMapping(URLBASEID)
     public ResponseEntity<ProjetoSimplesDTO> editar(@PathVariable Long id, @RequestBody ProjetoSimplesDTO projetoSimplesDto) {
 
+        Long funcionarioGerenteId = projetoSimplesDto.getFuncionarioGerenteId();
+
         Projeto edicaoProjeto = projetoRepository.findById(id).orElseThrow(() -> new ProjetoException(id));
-        edicaoProjeto = projetoSimplesDto.converteParaProjeto(edicaoProjeto.getCentroCusto(), edicaoProjeto.getFuncionarios());
+        Funcionario funcionarioGerente = funcionarioRepository.findById(funcionarioGerenteId).orElseThrow(() -> new FuncionarioException(funcionarioGerenteId));
+
+        CentroCusto centroCusto = centroCustoRepository.findById(projetoSimplesDto.getCentroCustoId()).orElseThrow(() -> new CentroCustoException(projetoSimplesDto.getCentroCustoId()));
+        
+        edicaoProjeto = projetoSimplesDto.converteParaProjeto(centroCusto, edicaoProjeto.getFuncionarios(), funcionarioGerente);
         edicaoProjeto = projetoRepository.save(edicaoProjeto);
 
         return new ResponseEntity<>(new ProjetoSimplesDTO(edicaoProjeto), HttpStatus.OK);
