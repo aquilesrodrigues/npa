@@ -2,7 +2,6 @@ package com.project.npa.controller;
 
 import com.project.npa.exception.CentroCustoException;
 import com.project.npa.model.CentroCusto;
-import com.project.npa.model.dto.CargoDTO;
 import com.project.npa.model.dto.CentroCustoDTO;
 import com.project.npa.repository.CentroCustoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +22,17 @@ public class CentroCustoController {
     private CentroCustoRepository centroCustoRepository;
 
     @PostMapping(URLBASE)
-    public ResponseEntity<CentroCustoDTO> cadastrar(@RequestBody CentroCustoDTO cargo) {
+    public ResponseEntity<CentroCustoDTO> cadastrar(@RequestBody CentroCustoDTO cargoDto) {
 
-        CentroCusto centroCusto = cargo.converteParaCentroCusto();
+        CentroCusto centroCusto = cargoDto.converteParaCentroCusto();
         centroCusto = centroCustoRepository.save(centroCusto);
 
-        return new ResponseEntity<>(new CentroCustoDTO(centroCusto), HttpStatus.OK);
+        return new ResponseEntity<>(new CentroCustoDTO(centroCusto), HttpStatus.CREATED);
 
     }
+
     @GetMapping(URLBASE)
-    public ResponseEntity<List<CentroCustoDTO>> listar() {
+    public ResponseEntity<List<CentroCustoDTO>> listar(){
 
         List<CentroCusto> centroCustos = centroCustoRepository.findAll();
         List<CentroCustoDTO> listagemCentroCusto = new ArrayList<>();
@@ -43,13 +43,32 @@ public class CentroCustoController {
         }
         return new ResponseEntity<>(listagemCentroCusto, HttpStatus.OK);
     }
-//    @GetMapping(URLBASEID)
-//    public ResponseEntity<CentroCustoDTO> retorna(@PathVariable("id") Long id) {
-//
-//        CentroCusto centroCusto = centroCustoRepository.findById(id).orElseThrow(() -> new CentroCustoException(id));
-//
-//        return ResponseEntity<>(new CargoDTO(centroCusto), HttpStatus.OK);
-//    }
 
+    @GetMapping(URLBASEID)
+    public ResponseEntity<CentroCustoDTO> retorna(@PathVariable("id") Long id) {
+
+        CentroCusto centroCusto = centroCustoRepository.findById(id).orElseThrow(() -> new CentroCustoException(id));
+
+        return new ResponseEntity<>(new CentroCustoDTO(centroCusto), HttpStatus.OK);
+    }
+
+    @PutMapping(URLBASEID)
+    public ResponseEntity<CentroCustoDTO> editarCentroCusto(@PathVariable("id") Long id, @RequestBody CentroCustoDTO centroCustoDto){
+
+        CentroCusto centroCusto = centroCustoRepository.findById(id).orElseThrow(() -> new CentroCustoException(id));
+        centroCusto = centroCustoDto.converteParaCentroCusto();
+        centroCusto.setId(id);
+        centroCusto = centroCustoRepository.save(centroCusto);
+
+        return new ResponseEntity<>(new CentroCustoDTO(centroCusto), HttpStatus.OK);
+    }
+
+    @DeleteMapping(URLBASEID)
+    public ResponseEntity<?> deletar(@PathVariable Long id){
+        CentroCusto centroCusto = centroCustoRepository.findById(id).orElseThrow(() -> new CentroCustoException(id));
+        centroCustoRepository.deleteById(id);
+
+        return ResponseEntity.ok().build();
+    }
 
 }
