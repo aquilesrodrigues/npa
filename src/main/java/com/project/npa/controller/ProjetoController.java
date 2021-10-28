@@ -1,6 +1,7 @@
 package com.project.npa.controller;
 import com.project.npa.exception.CentroCustoException;
 import com.project.npa.exception.FuncionarioException;
+import com.project.npa.exception.ProjetoException;
 import com.project.npa.model.CentroCusto;
 import com.project.npa.model.Funcionario;
 import com.project.npa.model.Projeto;
@@ -12,10 +13,8 @@ import com.project.npa.repository.ProjetoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -52,9 +51,15 @@ public class ProjetoController {
         return new ResponseEntity<ProjetoSimplesDTO>(new ProjetoSimplesDTO(projetoCadastro), HttpStatus.CREATED);
     }
 
-    @GetMapping(URLBASE)
-    public ResponseEntity<List<ProjetoSimplesDTO>> listar() {
-        List<>
+
+    @DeleteMapping(URLBASEID)
+    public ResponseEntity<?> deletarProjeto(@PathVariable Long id) {
+
+        Projeto projeto = projetoRepository.findById(id).orElseThrow(() -> new ProjetoException(id));
+        projetoRepository.deleteById(id);
+
+        return ResponseEntity.ok().build();
     }
+
 
 }
